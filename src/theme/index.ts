@@ -106,3 +106,5 @@ export const carBravoTheme = createTheme({
 		MuiDivider,
 	},
 });
+
+export const appTheme = carBravoTheme
