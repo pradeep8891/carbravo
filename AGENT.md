@@ -30,7 +30,10 @@ These instructions apply to AI coding agents and human contributors working in t
 - Use `*.test.ts` / `*.test.tsx` for unit and component tests.
 - Prefer named exports; use default exports only where framework/tool conventions require them.
 - Keep shared code genuinely generic. If code is used by one feature, keep it in that feature.
-- Avoid barrel exports that create circular dependencies or obscure module ownership.
+- Create folders only when real source files need them; do not add `.gitkeep` placeholders or empty planned layers.
+- Add `index.ts` only when a folder has a deliberate public API; do not add one to every folder.
+- Keep internal imports direct, use explicit named exports in barrels, and avoid self-imports/cycles.
+- Follow [file and folder conventions](docs/file-and-folder-conventions.md) for naming, imports, barrels, and folder creation.
 
 ## API rules
 
