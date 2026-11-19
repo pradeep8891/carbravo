@@ -1,14 +1,16 @@
-import axios from 'axios'
-import { apiConfig } from '@/config'
+import { apiConfig } from "@/config";
+import axios from "axios";
+import { normalizeApiError } from "./api-error";
 
 export const apiClient = axios.create({
   baseURL: apiConfig.baseURL,
   timeout: apiConfig.timeout,
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
+    Accept: "application/json",
   },
-})
+});
 
-// Add authentication and normalized error handling only after the API/session contract is agreed.
-// Never log credentials or sensitive request/response payloads.
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error: unknown) => Promise.reject(normalizeApiError(error)),
+);
