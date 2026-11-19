@@ -1,0 +1,4 @@
+minimumReleaseAgeExclude:
+  - '@testing-library/jest-dom@8.0.0'
+  - '@testing-library/user-event@14.6.13'
+  - react-router@8.5.2
