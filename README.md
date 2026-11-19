@@ -19,7 +19,8 @@ A clean, feature-first React + TypeScript frontend foundation for CarBravo.
 
 See [docs/windows-pnpm-setup.md](docs/windows-pnpm-setup.md) if pnpm does not launch on Windows.
 See [docs/dependency-baseline.md](docs/dependency-baseline.md) for the pinned stable dependency snapshot.
-See [docs/architecture.md](docs/architecture.md) for the reasoning, boundaries, conventions, and implementation guidance.
+See [docs/architecture.md](docs/architecture.md) for the reasoning, boundaries, and implementation guidance.
+See [docs/file-and-folder-conventions.md](docs/file-and-folder-conventions.md) for naming, folder creation, imports, and selective `index.ts` barrel exports.
 
 ## Requirements
 

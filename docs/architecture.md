@@ -119,11 +119,10 @@ features/
     ├── pages/
     ├── schemas/
     ├── types/
-    ├── utils/
-    └── index.ts
+    └── utils/
 ```
 
-Do not create empty layers for convention's sake. A small feature may start with only `pages/` and `api/`, then grow as complexity appears.
+Do not create empty layers for convention's sake. A small feature may start with only the files it needs, then grow as complexity appears. Add a feature-root `index.ts` only when the feature has a deliberate public API for consumers outside the feature. Do not create one automatically.
 
 ### Pages and components
 
@@ -277,7 +276,13 @@ A change is not complete merely because it compiles. Report which checks were ac
 
 Prefer named exports and explicit imports. Avoid large barrel files that hide dependencies or create cycles.
 
-## 18. Adoption strategy
+## 18. File, folder, and export conventions
+
+Follow [file-and-folder-conventions.md](./file-and-folder-conventions.md) for detailed naming, folder creation, import, and barrel-export rules.
+
+The short version: create folders when real files need them; never use `.gitkeep` to pre-create planned structure; and add `index.ts` only for intentional public entry points. Prefer direct imports for internal implementation details. Barrels must not create circular dependencies or hide ownership.
+
+## 19. Adoption strategy
 
 When applying this architecture to an existing application:
 
@@ -291,7 +296,7 @@ When applying this architecture to an existing application:
 
 Do not perform a wholesale rewrite solely to achieve folder symmetry.
 
-## 19. Architecture decision summary
+## 20. Architecture decision summary
 
 The chosen approach deliberately balances consistency with low complexity:
 
