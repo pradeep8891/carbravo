@@ -23,7 +23,7 @@ See [docs/architecture.md](docs/architecture.md) for the reasoning, boundaries, 
 
 ## Requirements
 
-- Node.js 24 LTS (latest 24.x security patch recommended)
+- Node.js 26 LTS (latest 26.x security patch recommended)
 - pnpm 12.21.0 (pinned in package.json)
 
 ## Getting started
@@ -56,6 +56,7 @@ pnpm format:check    # Verify formatting
 pnpm test             # Run Vitest
 pnpm test:watch       # Run Vitest in watch mode
 pnpm test:coverage    # Run tests with coverage
+pnpm verify           # Run all local quality gates
 pnpm test:e2e         # Run Playwright tests
 ```
 
