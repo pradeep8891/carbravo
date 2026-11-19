@@ -7,7 +7,6 @@ These instructions apply to AI coding agents and human contributors working in t
 - Work only in the CarBravo frontend.
 - This repository is a frontend foundation; the Java backend is maintained separately.
 - Do not introduce backend implementation, database access, server secrets, or backend-owned business rules here.
-- Do not add existing product screens or workflows unless explicitly requested.
 
 ## Non-negotiable engineering principles
 
