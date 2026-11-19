@@ -202,12 +202,14 @@ export function normalizeApiError(error: unknown): ApiError {
       ? getString(data.code) ?? getString(data.errorCode)
       : undefined
 
+    const requestId = getRequestId(headers)
+
     return new ApiError({
       type: 'http',
       message: getHttpMessage(status, data),
       status,
       ...(code ? { code } : {}),
-      ...(getRequestId(headers) ? { requestId: getRequestId(headers) } : {}),
+      ...(requestId ? { requestId } : {}),
       fieldErrors: getFieldErrors(data),
       retryable: isRetryableStatus(status),
     })
@@ -217,7 +219,7 @@ export function normalizeApiError(error: unknown): ApiError {
     return new ApiError({
       type: 'timeout',
       message: TIMEOUT_MESSAGE,
-      code: axiosError.code,
+      ...(axiosError.code ? { code: axiosError.code } : {}),
       retryable: true,
     })
   }
