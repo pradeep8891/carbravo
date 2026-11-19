@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosHeaders, CanceledError } from 'axios'
+import { AxiosError, AxiosHeaders, CanceledError } from 'axios'
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { describe, expect, it } from 'vitest'
 import { ApiError, normalizeApiError } from './api-error'
