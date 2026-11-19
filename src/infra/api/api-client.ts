@@ -1,14 +1,22 @@
 import axios from 'axios'
 import { apiConfig } from '@/config'
+import { normalizeApiError } from './api-error'
 
+/**
+ * Shared HTTP client for Java API requests.
+ *
+ * Do not set Content-Type globally: the browser must add the multipart
+ * boundary automatically for FormData uploads.
+ */
 export const apiClient = axios.create({
   baseURL: apiConfig.baseURL,
   timeout: apiConfig.timeout,
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/json',
   },
 })
 
-// Add authentication and normalized error handling only after the API/session contract is agreed.
-// Never log credentials or sensitive request/response payloads.
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error: unknown) => Promise.reject(normalizeApiError(error)),
+)
