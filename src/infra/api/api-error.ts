@@ -5,7 +5,7 @@
  * error shape instead of parsing Axios and Java response formats itself.
  */
 import axios from 'axios'
-import type { AxiosError, AxiosResponseHeaders } from 'axios'
+import type { AxiosError, AxiosResponse } from 'axios'
 
 export type ApiErrorType = 'http' | 'network' | 'timeout' | 'canceled' | 'unknown'
 
@@ -136,14 +136,12 @@ function getFieldErrors(payload: unknown): Record<string, string> {
   return result
 }
 
-function getRequestId(headers: AxiosResponseHeaders | undefined): string | undefined {
+function getRequestId(headers: AxiosResponse['headers'] | undefined): string | undefined {
   if (!headers) return undefined
 
-  const requestId =
-    headers.get('x-request-id') ??
-    headers.get('x-correlation-id') ??
-    headers['x-request-id'] ??
-    headers['x-correlation-id']
+  // Axios may expose either raw response headers or an AxiosHeaders instance.
+  // Header names are normalized to lowercase by Axios.
+  const requestId = headers['x-request-id'] ?? headers['x-correlation-id']
 
   return getString(requestId)
 }
