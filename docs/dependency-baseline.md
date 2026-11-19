@@ -2,7 +2,7 @@
 
 **Snapshot date:** 19 November 2026
 
-This skeleton uses exact stable dependency versions. The versions below incorporate the updates supplied from the project's `ncu -u` report. Exact pins are intentional; the lockfile must be generated and committed by the project owner after installation.
+This skeleton uses exact dependency versions. The versions below incorporate the updates supplied from the project's `ncu -u` report. Exact pins are intentional, and the committed pnpm lockfile records the resolved dependency graph.
 
 ## Runtime
 
@@ -53,13 +53,13 @@ Node.js 26 is the Active LTS line as of this snapshot. `@types/node` is aligned 
 ## Installation and reproducibility policy
 
 - Exact versions are committed in `package.json`.
-- `pnpm-lock.yaml` must be generated with the pinned pnpm version and committed.
-- CI must use `pnpm install --frozen-lockfile`.
+- `pnpm-lock.yaml` is committed and must be kept in sync with `package.json` using pnpm `12.21.0`.
+- CI and clean developer installs must use `pnpm install --frozen-lockfile`.
 - Do not use `*`, `latest`, or floating dependency ranges.
 - Do not automatically accept major upgrades. Review release notes, peer dependencies, security advisories, and migration impact.
 - Run typecheck, lint, unit tests, production build, and critical E2E tests after upgrades.
 - This ZIP intentionally does not include `pnpm-lock.yaml`: dependency resolution and installation have not been run in the user's Windows environment. Generate it there using the pinned pnpm version.
 
-## Important
+## Verification
 
-A pinned package manifest is not proof that every package combination has been installed and tested. Treat this as the final proposed dependency baseline; the lockfile and quality checks are the final installation verification.
+A committed lockfile makes dependency resolution reproducible, but it does not prove the dependency graph has been installed successfully on every supported environment. Run `pnpm install --frozen-lockfile` and the repository verification scripts before merging dependency changes.
